@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        .booking {
+            padding: 20px;
+            background-color: #ffffff; /* White background for the payment section */
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px; /* Limit width for better presentation */
+            width: 100%; /* Full width up to max-width */
+            border: 1px solid #ccc; /* Border around the container */
+        }
+
+        h2 {
+            text-align: center; /* Center the heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        label {
+            display: block; /* Makes labels stack vertically */
+            margin: 5px 0; /* Adds space between labels */
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            display: block; /* Center the image */
+            margin: 0 auto; /* Center the image */
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #28a745; /* Green button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* Full width for the button */
+        }
+
+        button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Payment Section -->
+<div class="booking" id="paymentSection">
+    <h2>Payment Options</h2>
+    <fieldset>
+        <legend>Choose Payment Method</legend>
+        
+        <!-- Credit/Debit Card Option -->
+        <label>
+            <input type="radio" name="payment" value="credit-debit" onclick="togglePaymentOptions('card')" required /> 
+            Credit/Debit Card
+        </label>
+        <div id="card-details" style="display: none; margin-top: 10px;">
+            <label>Card Number:
+                <input type="text" name="card-number" placeholder="Enter card number" required />
+            </label><br>
+            <label>Expiry Date:
+                <input type="text" name="expiry-date" placeholder="MM/YY" required />
+            </label><br>
+            <label>CVV:
+                <input type="text" name="cvv" placeholder="CVV" required />
+            </label><br>
+        </div>
+
+        <!-- UPI Payment Option -->
+        <label>
+            <input type="radio" name="payment" value="upi" onclick="togglePaymentOptions('upi')" /> 
+            UPI
+        </label>
+        <div id="upi-options" style="display: none; margin-top: 10px;">
+            <label>
+                <input type="radio" name="upi-method" value="phonepe" /> PhonePe
+            </label><br>
+            <label>
+                <input type="radio" name="upi-method" value="paytm" /> Paytm
+            </label><br>
+            <label>
+                <input type="radio" name="upi-method" value="googlepay" /> Google Pay
+            </label><br>
+            <label>
+                UPI ID:
+                <input type="text" name="upi-id" placeholder="Enter your UPI ID" required />
+            </label><br>
+        </div>
+
+        <!-- QR Code Payment Option -->
+        <label>
+            <input type="radio" name="payment" value="qr-code" onclick="togglePaymentOptions('qr')" /> 
+            Scan QR Code
+        </label>
+        <div id="qr-code" style="display: none; margin-top: 10px;">
+            <img src="./assets/files/me1.jpg" alt="Scan this QR code for payment" title="QR Code" />
+            <p>Scan the QR code to make the payment.</p>
+        </div>
+    </fieldset>
+    <button type="button" onclick="confirmPayment()">Pay</button>
+</div>
+
+<script>
+    function togglePaymentOptions(method) {
+        // Hide all payment details
+        document.getElementById("card-details").style.display = 'none';
+        document.getElementById("upi-options").style.display = 'none';
+        document.getElementById("qr-code").style.display = 'none';
+        
+        // Show the selected payment method details
+        if (method === 'card') {
+            document.getElementById("card-details").style.display = 'block';
+        } else if (method === 'upi') {
+            document.getElementById("upi-options").style.display = 'block';
+        } else if (method === 'qr') {
+            document.getElementById("qr-code").style.display = 'block';
+        }
+    }
+
+    function confirmPayment() {
+        alert('Booking successful! Payment completed. Enjoy your journey!');
+        // Here you would typically redirect to a success page or further processing
+    }
+</script>
+
+</body>
+</html>
